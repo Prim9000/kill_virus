@@ -1,0 +1,73 @@
+include gro
+include LV3
+dose := 30;
+
+set ( "dt", 0.1 );
+
+s := signal ( 1, 0.1 );
+
+program p() := {
+
+  set ( "ecoli_growth_rate", 0.009);
+  m1 := 0;
+  m2 := 0;
+  m_good := 100;
+  t := 0;
+  mode := 0;
+  walk_around := 0.1;
+
+  mode = 2 : { set_signal(JSTP,0,0,dose) } // kill cell 
+  mode = 3 : { run ( 200 ) }
+
+  t > 0.25 : { // sampling at time 0.25
+    t := 0,
+    m1 := m2,
+    m2 := get_signal(bad_signal) - get_signal(good_signal), 
+    m_good := get_signal(good_signal) 
+    //- get_signal(bad_signal) // get_signal(bad_signal)
+    //print(get_signal(bad_signal))
+  }
+  m2 < walk_around : {
+        mode = 3
+    }
+  t > 300 & m2 > 0.1 & m_good < 0.01 : {
+  emit_signal ( JSTP, 30 );
+  mode = 0;
+  }
+  m2 > 0.1 & m_good < 0.01: {
+      //print(m_good);
+    emit_signal ( SNVc, 30 );
+    //set_signal ( AZ, 0, 0, 30 )
+    //set_signal(AZ,0,0,dose)
+    
+
+     // emit_signal ( AZ, 10 ), 
+    //set_signal(AZ,,,dose)
+   // mode = 2;
+    //print("mode = 2" );
+    mode = 0
+  }
+
+
+  mode = 0 : { run ( 65 ) } // walk at speed (8 steps)
+  mode = 1 : { tumble ( 1500 ) } // turn around  // spin
+
+  mode = 0 & m2 < m1 & rate ( 0.5 ) : { mode := 1 } // It is walking        
+  mode = 0 & m2 > m1 & rate ( 0.01 ) : { mode := 1 }
+
+
+  mode = 1 & rate ( 0.01 ) : { mode := 0 }
+
+  true : { t := t + dt }
+
+};
+
+
+foreach q in range 20 do
+  ecoli ( [ 
+      x := rand(600)-300, 
+      y := rand(600)-300, 
+      theta := 0.01*rand(628) ], 
+    program p() )
+
+end;
