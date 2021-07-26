@@ -1,0 +1,45 @@
+include gro
+
+set ( "dt", 0.01 );
+alpha_r := 69.4 / 2.35;
+message ( 0, "alpha_r = " <> tostring(alpha_r) <> " mRNA / min / fL" );
+beta_r := - log ( 0.5 ) / 3.69;
+message ( 0, "beta_r = " <> tostring(beta_r) <> " / min" );
+alpha_p := 3.0;
+message ( 0, "alpha_r = " <> tostring(alpha_p) <> "/ min" );
+
+beta_p := 0.01;
+message ( 0, "beta_r = " <> tostring(beta_p) <> " / min" );
+
+set ( "gfp_saturation_max", 1000 );
+set ( "gfp_saturation_min", 800 );
+
+program gfp() := {
+
+  mRNA := 0;    
+  gfp := 0;     
+
+  rate ( alpha_r * volume ) : { mRNA := mRNA + 1 };
+  rate ( beta_r * mRNA ) :    { mRNA := mRNA - 1 };
+  rate ( alpha_p * mRNA ) :   { gfp := gfp + 1 };
+  rate ( beta_p * gfp ) :     { gfp := gfp - 1 };
+
+};
+
+
+program report() := {
+
+  needs gfp, mRNA;
+
+  selected : { message ( 1,
+          "cell "  <> tostring(id)
+     <> ": mRNA="  <> tostring(mRNA) 
+     <> ", GFP="   <> tostring(gfp)
+     <> ", [GFP]=" <> tostring(gfp/volume) ) }
+
+};
+
+ecoli ( [ x := 0, y := 0 ], program gfp() + report() sharing mRNA, gfp );
+
+
+

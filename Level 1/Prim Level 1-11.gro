@@ -1,0 +1,16 @@
+include gro
+
+program glow() := {    
+    rfp := 1000;       
+    gfp := 1000;
+    selected & just_divided : { 
+    print("gfp = ",gfp," rfp = ",rfp," id = ", id);
+    }
+
+};                     
+
+ecoli([x := 0, y := 0], program glow()); 
+
+
+
+

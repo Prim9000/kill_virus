@@ -1,0 +1,18 @@
+include gro
+
+program glow() := {    
+    gfp := 1000;       
+    
+    selected & just_divided : {                     
+        print("cell has gfp = " , gfp);   //???????
+    }                            
+
+};                  
+
+ecoli([x := 0, y := 0], program glow()); 
+
+
+
+
+
+

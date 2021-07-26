@@ -1,0 +1,9 @@
+include gro
+
+number := 1000*10;
+//print(number);
+
+//task: ลองเปลี่ยนจาก 1000+1 เป็น 1000*10 ดู
+
+
+

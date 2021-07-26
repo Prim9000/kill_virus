@@ -1,0 +1,15 @@
+include gro
+a := 5; // a is the outer bound of the glowing. As a increases, the outer bound enlarge. diffusion rate 
+b := 0.1; // the more of the b value, it doesn't glow at all.  diffusion rate and degradation rate
+c := 1; // c is the rate of signal the more c the faster the rate of glowing of the signal . I can see the distinct differences between 0.5 and 10 // rate of change of concentration
+ahl := signal(a, b);
+
+program main() := {
+	true : {
+		set_signal(ahl,0,0,c)
+	}
+}
+
+//a = diffusion rate
+//b =  degradation rate
+//c = rate of concentration of signal

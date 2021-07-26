@@ -1,0 +1,9 @@
+include gro
+
+a := "Hello_world";
+print(a);
+
+b := 1000+1;
+print(b);
+
+print(a,b); // Hello_world1001

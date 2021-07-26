@@ -1,0 +1,12 @@
+include gro
+
+ahl := signal(5, 0.1);
+
+program signaler() := {
+	just_divided : {
+		emit_signal(ahl, 10)
+	}
+};
+
+ecoli( [], program signaler ());
+

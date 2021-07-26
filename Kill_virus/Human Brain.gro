@@ -1,0 +1,58 @@
+//                                         //
+//  TEST YOUR DRUG ON REAL WORLD HERE      //
+//                                         //
+
+include LV3
+
+//drugs: AZ, SNVc, JSTP, CAT, Pfiran
+//write your code here
+//Hint: Chemotaxis.gro
+
+set ( "dt", 0.1 );
+
+s := signal ( 1, 0.1 );
+
+dose := 100; //<-- you can change drug dose here
+
+program main() := {
+	true : {
+		set_signal(JSTP,0,0,dose) // <--- change drug type here
+	}
+}
+
+program p() := {
+
+  set ( "ecoli_growth_rate", 0.0 );
+  m1 := 0;
+  m2 := 0;
+  t := 0;
+  mode := 0;
+
+  t > 0.25 : {
+    t := 0,
+    m1 := m2,
+    m2 := get_signal(s)
+  }
+
+  mode = 0 : { run ( 8 ) }
+  mode = 1 : { tumble ( 800 ) }
+
+  mode = 0 & m2 < m1 & rate ( 0.5 ) : { mode := 1 }
+  mode = 0 & m2 > m1 & rate ( 0.01 ) : { mode := 1 }
+
+  mode = 1 & rate ( 0.01 ) : { mode := 0 }
+
+  true : { t := t + dt }
+
+};
+
+foreach q in range 50 do
+
+  ecoli ( [ 
+      x := rand(600)-300, 
+      y := rand(600)-300, 
+      theta := 0.01*rand(628) ], 
+    program p() )
+
+end;
+

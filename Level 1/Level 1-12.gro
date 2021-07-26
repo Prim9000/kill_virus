@@ -1,0 +1,17 @@
+include gro
+
+alpha := 10;
+print("hello");
+program glow() := {    
+    gfp := 0;          
+
+    rate(alpha) : { gfp := gfp + 1} //??????
+
+    selected & just_divided : { 
+    print("gfp = ",gfp," alpha = ",alpha," id = ", id);
+    }
+
+};                    
+
+ecoli([x := 0, y := 0], program glow()); 
+

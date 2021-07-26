@@ -1,0 +1,25 @@
+include gro
+
+
+ahl := signal(5, 0.1);
+k := 0;
+
+program emit() := {
+	rate(k*get_signal(ahl)) : {
+		emit_signal(ahl, 0.2)
+	}
+};
+
+
+program receiver() := {
+	gfp := 0;
+	rate(k*get_signal(ahl)) : {
+		gfp := gfp +1    
+	}
+    true : {
+		set_signal(ahl,0,0,10)
+	}
+};
+
+ecoli( [], emit());
+//ecoli( [], program emit_Sig () + signaler() sharing mRNA, gfp);

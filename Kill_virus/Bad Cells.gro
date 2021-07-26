@@ -1,0 +1,16 @@
+//                                         //
+//  TEST YOUR DRUG ON INFECTED CELLS HERE  //
+//                                         //
+
+include LV1
+
+//drugs: AZ, SNVc, JSTP, CAT, Pfiran
+dose := 100; //<-- you can change drug dose here
+
+
+program main() := {
+	true : {
+		set_signal(JSTP,0,0,dose) // <--- change drug type here
+	}
+}
+

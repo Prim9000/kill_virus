@@ -1,0 +1,44 @@
+include gro
+include LV3
+dose := 100;
+
+set ( "dt", 0.1 );
+
+s := signal ( 1, 0.1 );
+
+program p() := {
+
+  set ( "ecoli_growth_rate", 0.05 );
+  m1 := 0;
+  m2 := 0;
+  t := 0;
+  mode := 0;
+
+  t > 0.25 : { // sampling at time 0.25
+    t := 0,
+    m1 := m2,
+    m2 := get_signal(bad_signal) - get_signal(good_signal) 
+  }
+
+  mode = 0 : { run ( 8 ) } // walk at speed (8 steps)
+  mode = 1 : { tumble ( 800 ) } // turn around  // spin
+  mode = 2 : { run (10) }
+
+  mode = 0 & m2 < m1 & rate ( 0.5 ) : { mode := 1 } // It is walking        
+  mode = 0 & m2 > m1 & rate ( 0.01 ) : { mode := 1 }
+
+  mode = 1 & rate ( 0.01 ) : { mode := 0 }
+
+  true : { t := t + dt }
+
+};
+
+
+foreach q in range 20 do
+  ecoli ( [ 
+      x := rand(600)-300, 
+      y := rand(600)-300, 
+      theta := 0.01*rand(628) ], 
+    program p() )
+
+end;

@@ -1,0 +1,31 @@
+include gro
+
+alpha := 10;
+beta := 10;
+program glow() := {   
+    gfp := 0;          
+    mRNA := 0;
+
+    rate(alpha) : { mRNA := mRNA + 1}     
+    rate(beta * mRNA) : { gfp := gfp + 1} 
+
+
+    r := [s := 0];
+    selected & r.s > 1 : {                      
+        print("id : ", id, " mRNA : ", mRNA, " gfp : ", gfp),
+        r.s := 0    
+    }             
+
+    true : {
+        r.s := r.s + dt
+    }     
+
+};                     
+
+ecoli([x := 0, y := 0], program glow()); 
+
+
+
+
+
+

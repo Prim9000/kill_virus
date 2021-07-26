@@ -1,0 +1,15 @@
+include gro
+
+ahl := signal(5, 0.1);
+k := 20;
+
+program signaler() := {
+	rate(k) : {
+		emit_signal(ahl, 0.2)
+	}
+    gfp := 0;
+	rate(get_signal(ahl)) : {
+		gfp := gfp +1
+	}
+};
+ecoli( [], program signaler() );

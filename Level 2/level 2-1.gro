@@ -1,0 +1,4 @@
+include gro
+
+ahl := signal(5, 0.1);
+

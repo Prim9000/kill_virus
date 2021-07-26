@@ -1,0 +1,10 @@
+include gro
+
+
+program blank() := {    
+    skip();             
+};                     
+
+ecoli([x := 10, y := 0], program blank()); 
+
+

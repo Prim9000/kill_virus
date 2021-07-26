@@ -1,0 +1,38 @@
+//ดูวีดีโอก่อนทำ part นี้
+include gro
+
+alpha := 10;
+beta := 10;
+program glow() := {    //สร้างชุดคำสั่งให้กับน้อน แล้วตั้งชื่อชุดคำสั่งนั้นว่า glow()
+    gfp := 0;          
+    mRNA := 0;
+
+    rate(alpha) : { mRNA := mRNA + 1}      
+    rate(beta * mRNA) : { gfp := gfp + 1} 
+
+      
+
+    //ไม่ต้องเข้าใจการทำงานของส่วนนี้ก็ได้
+    //เอาเป็นว่ามันบอกค่า id, mRNA กับ gfp ทุกๆ 1 นาทีในเกมแค่นั้นเอง
+    r := [s := 0];
+    selected & r.s > 1 : {                      
+        print("id : ", id, " mRNA : ", mRNA, " gfp : ", gfp),
+        r.s := 0    
+    }             
+
+    true : {
+        r.s := r.s + dt
+    }     
+
+};                     //จบชุดคำสั่ง
+
+ecoli([x := 0, y := 0], program glow()); //สร้าง e.coli ที่ใช้ชุดคำสั่ง glow() 
+
+//task 1: ลองปรับ เพิ่ม / ลด ค่า alpha ดู
+//task 1.5: alpha เหมือน alpha จาก level ที่แล้วมั้ย
+//task 2: ลองปรับ เพิ่ม / ลด ค่า beta ดู
+//task 2.5: beta มีผลต่อความสว่างอย่างไร
+
+
+
+

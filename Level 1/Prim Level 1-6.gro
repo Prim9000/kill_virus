@@ -1,0 +1,11 @@
+include gro
+
+program glow() := {    
+    gfp := 100;      
+};                     
+
+ecoli([x := 0, y := 0], program glow());
+
+
+
+

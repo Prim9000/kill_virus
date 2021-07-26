@@ -1,0 +1,10 @@
+include gro
+
+a := "JSTP";
+b := 24;
+c := "/1";
+
+print(a,b,c);
+
+
+

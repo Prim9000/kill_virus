@@ -1,0 +1,21 @@
+include gro
+
+ahl := signal(5, 0.1);
+k := 20;
+
+program signaler() := {
+	true : {
+		emit_signal(ahl, 0.2)
+	}
+};
+
+program receiver() := {
+	gfp := 0;
+	rate(k*get_signal(ahl)) : { //k is the rate/factor that the receiver cell will produce gfp which correspond to the emit signal (get_signal)
+		gfp := gfp +1
+	}
+};
+
+ecoli( [], program signaler ());
+ecoli( [], program receiver ());
+

@@ -1,0 +1,19 @@
+include gro
+
+program blank() := {    
+    skip();             
+};                    
+
+program rgb() := {     
+    gfp := 1000;       
+    rfp := 1000;      
+    cfp := 1000;       
+};                    
+
+ecoli([x := 0, y := 0], program rgb()); 
+
+
+
+
+
+

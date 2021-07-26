@@ -1,0 +1,4 @@
+include gro
+
+text := "JSTP";
+print(text);
