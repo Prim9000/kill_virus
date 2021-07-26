@@ -1,0 +1,48 @@
+include LV3
+
+check_interval := 0.25;
+wander_run_speed := 20;
+vaccine_release_amount := 1000;
+need_help_signal := signal(3, 1);
+
+program test() := {
+    set ( "ecoli_growth_rate", 0.0 );
+    m1 := 0;
+    m2 := 0;
+    t := 0;
+    mode := 0;
+
+    t > check_interval : {
+        t := 0,
+        m1 := m2,
+        m2 := get_signal(bad_signal)
+    }
+
+    mode = 0 : { run ( 8 ) }
+    mode = 1 : { tumble ( 800 ) }
+
+    mode = 0 & m2 < m1 & rate ( 0.5 ) : { 
+        mode := 1
+    }
+
+    mode = 0 & m2 > m1 & rate ( 0.01 ) : { 
+        mode := 1;
+        emit_signal(need_help_signal, vaccine_release_amount);
+    }
+    
+    mode = 1 & rate ( 0.01 ) : { mode := 0 }
+
+    true : { t := t + dt }
+
+};
+
+
+foreach q in range 50 do
+
+  ecoli ( [ 
+      x := rand(600)-300, 
+      y := rand(600)-300, 
+      theta := 0.01*rand(628) ], 
+    program test() )
+
+end;
