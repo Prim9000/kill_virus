@@ -1,0 +1,65 @@
+include LV3
+
+check_interval := 0.25;
+
+wander_run_speed := 20;
+wander_tumble_speed := 500;
+
+release_vaccine_threshold := 0.6;
+selected_vaccine := CAT;
+vaccine_release_amount := 0.5;
+
+call_for_help_threshold := 0.3;
+call_for_help_rate := 0.2;
+need_help_signal_modifier := 0.01;
+
+need_help := signal(2, 0.5);
+
+program test() := {
+    set ( "ecoli_growth_rate", 0.0 );
+    near_bad_cell := 0;
+    m1 := 0;
+    m2 := 0;
+    t := 0;
+    mode := 0;
+
+    t > check_interval : {
+        t := 0,
+        m1 := m2,
+        m2 := get_signal(bad_signal) + (get_signal(need_help) * 0.1)
+    }
+
+    mode = 0 : { run ( wander_run_speed ) }
+    mode = 1 : { tumble ( wander_tumble_speed ) }
+
+    mode = 0 & m2 < m1 & rate ( 0.5 ) : {  mode := 1 }
+
+    mode = 0 & m2 > m1 & rate ( 0.01 ) : {  mode := 1 }
+
+    mode = 0 & m2 > m1 & rate ( call_for_help_rate ) & m2 > call_for_help_threshold: {  
+        emit_signal(need_help, need_help_signal_modifier * m2) 
+    }
+
+    m2 > release_vaccine_threshold : {
+        emit_signal(selected_vaccine, vaccine_release_amount);
+    }
+    
+    get_signal(good_signal) > 0.7 & rate(0.1) : {
+        absorb_signal(selected_vaccine, get_signal(selected_vaccine))
+    }
+
+    mode = 1 & rate ( 1 ) : { mode := 0 }
+
+    true : { t := t + dt }
+};
+
+
+foreach q in range 600 do
+
+  ecoli ( [ 
+      x := rand(600)-300, 
+      y := rand(600)-300, 
+      theta := 0.01*rand(628) ], 
+    program test() )
+
+end;

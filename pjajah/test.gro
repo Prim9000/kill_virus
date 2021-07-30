@@ -1,0 +1,9 @@
+include gro
+
+program test() =: {
+    true : {
+        run (8)
+    }
+};
+
+ecoli([], program test());

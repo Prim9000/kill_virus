@@ -1,0 +1,14 @@
+//                                      //
+//  TEST YOUR DRUG ON GOOD CELLS HERE   //
+//                                      //
+
+include LV2
+
+//drugs: AZ, SNVc, JSTP, CAT, Pfiran
+dose := 100; //<-- you can change drug dose here
+
+program main() := {
+	true : {
+		set_signal(AZ,0,0,dose) // <--- change drug type here
+	}
+}
