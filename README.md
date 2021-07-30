@@ -1,4 +1,4 @@
-# Defeating O Cha CoV 
+# Defeating O Cha CoV [![DOI](https://zenodo.org/badge/389504916.svg)](https://zenodo.org/badge/latestdoi/389504916)
 JSTP24/1 Hacking live & Playing God
 
 The Virus (O Cha CoV) is an apocalypse to the humanity by destroying and losing control of our mind.
