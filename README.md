@@ -34,6 +34,7 @@ We have different types of vaccine with the certain number of effectiveness.
 1. Destruction : Kill the most
 2. Collaborative : Gang up 
 3. Protection : Absorb the vaccine
+
 ![image](https://user-images.githubusercontent.com/65888725/127638513-2410e645-c564-4bb2-8ce9-702d49640318.png)
 ![image](https://user-images.githubusercontent.com/65888725/127638543-4e02ad10-73a8-4092-a92b-5d4ef75d0d8e.png)
 ![image](https://user-images.githubusercontent.com/65888725/127638577-605ba18d-f647-424c-aec6-6a41f8c26415.png)
