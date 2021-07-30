@@ -31,17 +31,29 @@ We have different types of vaccine with the certain number of effectiveness.
 ![image](https://user-images.githubusercontent.com/65888725/127637074-4c182ea8-48a0-4269-810c-e79c5d9a6558.png)
 
 ## Tactics & Approach
+1. Destruction : Kill the most
+2. Collaborative : Gang up 
+3. Protection : Absorb the vaccine
+![image](https://user-images.githubusercontent.com/65888725/127638513-2410e645-c564-4bb2-8ce9-702d49640318.png)
+![image](https://user-images.githubusercontent.com/65888725/127638543-4e02ad10-73a8-4092-a92b-5d4ef75d0d8e.png)
+![image](https://user-images.githubusercontent.com/65888725/127638577-605ba18d-f647-424c-aec6-6a41f8c26415.png)
 
+## Evaluation
+![image](https://user-images.githubusercontent.com/65888725/127638636-28ece1b3-7144-483d-a8de-d226a5e3436f.png)
+![image](https://user-images.githubusercontent.com/65888725/127638661-9740727d-71b3-4932-b87f-0491f83a7ff4.png)
+
+## Future Plan
+![image](https://user-images.githubusercontent.com/65888725/127638710-fbc709ba-6190-4edc-b9e4-4ee3a671ed30.png)
 ## Special Thanks & Team Members
 We are so grateful to have all of your supports!
 - [JSTP 24](https://www.nstda.or.th/jstp/)
-- [Gro] https://depts.washington.edu/soslab/gro/
+- [Gro](https://depts.washington.edu/soslab/gro/)
 
 ### Our Team
 You are fabulous! Thank you for all the hard work you put in! Know that it is recognized and greatly appreciated! We are so proud of you:)
-- JaJa
+- [JaJa Jinnapat Yana](https://github.com/Jinnapat)
 - Nop
-- Prim
+- [Prim Rajasurang Wongkrasaemongkol](https://github.com/Prim9000)
 - Mavin
 - Danny
 - Earth
