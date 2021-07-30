@@ -44,6 +44,8 @@ We have different types of vaccine with the certain number of effectiveness.
 ![image](https://user-images.githubusercontent.com/65888725/127638636-28ece1b3-7144-483d-a8de-d226a5e3436f.png)
 ![image](https://user-images.githubusercontent.com/65888725/127638661-9740727d-71b3-4932-b87f-0491f83a7ff4.png)
 
+[Dataset](https://docs.google.com/spreadsheets/d/1e9ATVxDNShqTydABk51YjUDYB5-hlubz_x7C-teRy3s/edit?usp=sharing)
+
 ## Future Plan
 ![image](https://user-images.githubusercontent.com/65888725/127638710-fbc709ba-6190-4edc-b9e4-4ee3a671ed30.png)
 ## Special Thanks & Team Members
